@@ -1,0 +1,141 @@
+<!-- Header -->
+<ion-header [translucent]="false" collapse="undefined" mode="ios" [style.background-color]="firebase.config.color">
+  <ion-toolbar [style.background-color]="firebase.config.color">
+    <ion-buttons slot="start" (click)="fechar()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="color: #fff"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title size="large" style="text-align: center; font-size: 18px; color: #fff;" >
+      Carrinho
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content [fullscreen]="true" >
+  <div id="container" *ngIf="step == 0">
+    <ion-list style="margin-top: 20px;" mode="ios">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Seus itens
+      </ion-list-header>
+
+      <!-- Produtos -->
+      <ion-item *ngFor="let p of firebase.carrinho; let i = index" lines='none'>
+        <ion-row style="width: 100%;">
+          <ion-col size="4">
+            <div class="produtoImagem" [style.background]="'url(' + p.imagem + ')'"></div>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label style="overflow:visible !important; color: rgb(61, 61, 61); font-size: 15px;">{{p.titulo}} <ion-icon (click)="remover(i)" name="trash-outline" style="color: red; margin-left: 10px; font-size: 13px"></ion-icon></ion-label>
+            <p style="color: rgb(85, 85, 85); font-size: 11px; margin-top: 0px; margin-bottom: 0px; width: 100%;">{{p.descricao}}</p>
+            <p  [style.color]="firebase.config.color" style="font-size: 10px; position: relative; top: -5px"><ion-badge color="primary"  style="font-size: 10px; position: relative; top:4px;margin-right: 10px;" [style.background-color]="firebase.config.color">{{p.quantidade}}x</ion-badge> R${{p.preco}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div id="container" *ngIf="step == 1">
+    <ion-list style="margin-top: 20px;" mode="ios">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Seus dados
+      </ion-list-header>
+
+      <!-- Dados -->
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Nome</ion-label>
+            <ion-input [(ngModel)]="cliente.nome"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">CEP</ion-label>
+            <ion-input (ionChange)="calcularCep()" [(ngModel)]="cliente.cep" type="tel"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Rua</ion-label>
+            <ion-input disabled [(ngModel)]="cliente.rua"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="3">
+          <ion-item>
+            <ion-label position="stacked">Bairro</ion-label>
+            <ion-input disabled [(ngModel)]="cliente.bairro"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="3">
+          <ion-item>
+            <ion-label position="stacked">Cidade</ion-label>
+            <ion-input disabled [(ngModel)]="cliente.cidade"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+      <ion-row>
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Número</ion-label>
+            <ion-input [(ngModel)]="cliente.numero" type="tel"></ion-input>
+          </ion-item>
+        </ion-col>
+
+        <ion-col size="6">
+          <ion-item>
+            <ion-label position="stacked">Complemento</ion-label>
+            <ion-input  [(ngModel)]="cliente.complemento"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+
+    
+    </ion-list>
+
+     <!-- Método de pagamento -->
+     <ion-list mode="ios" style="margin-top: 20px;" lines="none">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Como você quer pagar?
+      </ion-list-header>
+
+      <ion-item *ngFor="let opcao of cliente.pagamentos; let i = index" (click)="deixarApenasUmMarcado(i)">
+        <ion-label style="font-size: 14px;">{{opcao.titulo}}</ion-label>
+        <ion-checkbox slot="end" color="success" [(ngModel)]="opcao.checked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <ion-row *ngIf="cliente.pagamentos[0].checked == true">
+      <ion-col size="12">
+        <ion-item>
+          <ion-label position="stacked">Troco para:</ion-label>
+          <ion-input  type="tel" [(ngModel)]="cliente.troco"></ion-input>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<ion-footer (click)="enviar()" *ngIf="step == 1">
+  <ion-toolbar >
+    <div class="footerDiv" [style.background-color]="firebase.config.color">
+      <ion-title style="color: #fff; font-size: 14px;">Enviar pedido por R${{total}}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-footer>
+<ion-footer (click)="finalizar()" *ngIf="step == 0">
+  <ion-toolbar >
+    <div class="footerDiv" [style.background-color]="firebase.config.color">
+      <ion-title style="color: #fff; font-size: 14px;">Finalizar pedido por R${{total}}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,90 @@
+<!-- Header -->
+<ion-header [translucent]="false" collapse="undefined" mode="ios" [style.background-color]="firebase.config.color">
+  <ion-toolbar [style.background-color]="firebase.config.color">
+    <ion-buttons slot="start" (click)="fechar()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="color: #fff"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title size="large" style="text-align: center; font-size: 18px; color:#fff">
+      {{produto.titulo}}
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content>
+  <div id="container">
+    <!-- Imagem -->
+    <div class="containerProduto">
+      <div [style.background]="'url(' + produto.imagem + ')'" class="imagemProduto">
+
+      </div>
+    </div>
+
+    <!-- Descrição -->
+    <p class="descProduto">{{produto.descricao}}</p>
+
+    <!-- Variações -->
+    <ion-list mode="ios" style="margin-top: 20px;" *ngIf="produto.variacoes.length > 0" lines="none">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Escolha uma opção
+      </ion-list-header>
+
+      <ion-item *ngFor="let opcao of produto.variacoes; let i = index" (click)="deixarApenasUmMarcado(i)">
+        <ion-label style="font-size: 14px; color: black">{{opcao.titulo}}</ion-label>
+        <ion-checkbox slot="end" color="success" [(ngModel)]="opcao.checked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <!-- Adicionais -->
+    <ion-list mode="ios" style="margin-top: 20px;" *ngIf="produto.adicionais.length > 0" lines="none">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Adicionais
+      </ion-list-header>
+
+      <ion-item *ngFor="let opcao of produto.adicionais; let i = index" (click)="recalcularTotal(i)">
+        <ion-label style="font-size: 14px; color: black">{{opcao.titulo}} R${{opcao.preco}}</ion-label>
+        <ion-checkbox slot="end" color="success" [(ngModel)]="opcao.checked"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+
+    <!-- Obs -->
+    <ion-item style="margin-top: 20px;">
+      <ion-label position="floating">Observações</ion-label>
+      <ion-textarea [(ngModel)]="obs"></ion-textarea>
+    </ion-item>
+
+    <!-- Quantidade -->
+    <ion-row style="margin-top: 60px;">
+      <ion-col size="4" (click)="remover()">
+        <div class="iconDiv" [style.background-color]="firebase.config.color">
+          <ion-icon name="remove-outline" style="color: #fff"></ion-icon>
+        </div>
+      </ion-col>
+
+      <ion-col size="4">
+        <div class="iconDiv" [style.background-color]="firebase.config.color">
+          <p style="color: #fff; margin: 0px">{{quantidade}}</p>
+        </div>
+      </ion-col>
+
+      <ion-col size="4" (click)="adicionar()">
+        <div class="iconDiv" [style.background-color]="firebase.config.color">
+          <ion-icon name="add-outline" style="color: #fff"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>
+
+<!-- Footer -->
+<ion-footer (click)="adicionarAoCarrinho()">
+  <ion-toolbar>
+
+    <div class="footerDiv" [style.background-color]="firebase.config.color">
+      <ion-title style="color: #fff; font-size: 14px;">Adicionar por R${{produto.preco * quantidade}}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-footer>

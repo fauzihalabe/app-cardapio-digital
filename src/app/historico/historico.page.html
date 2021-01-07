@@ -1,0 +1,40 @@
+<!-- Header -->
+<ion-header [translucent]="false" collapse="undefined" mode="ios" [style.background-color]="firebase.config.color">
+  <ion-toolbar [style.background-color]="firebase.config.color">
+    <ion-buttons slot="start" (click)="fechar()">
+      <ion-button>
+        <ion-icon slot="icon-only" name="chevron-back-outline" style="color: #fff"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-title size="large" style="text-align: center; font-size: 18px; color: #fff">
+      Histórico de pedidos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content [fullscreen]="true">
+  <div id="container">
+
+    <!-- Categorias -->
+    <ion-list style="margin-top: 20px;" mode="ios">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        Pedidos
+      </ion-list-header>
+
+      <!-- Produtos -->
+      <ion-item *ngFor="let p of pedidos" >
+        <ion-row style="width: 100%;">
+          <ion-col size="12">
+            <ion-label style="overflow:visible !important; color: rgb(61, 61, 61); font-size: 15px;">{{p.data.toDate() | date:'dd/MM/yyyy HH:mm'}}</ion-label>
+            <ion-label style="overflow:visible !important; color: rgb(61, 61, 61); font-size: 13px; font-weight: 700;">R${{p.total}}</ion-label>
+            <ion-badge color="primary"  style="font-size: 10px; position: relative; top:4px;margin-right: 10px; margin-bottom: 15px;" [style.background-color]="firebase.config.color">{{p.status}}</ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    
+    </ion-list>
+  </div>
+</ion-content>

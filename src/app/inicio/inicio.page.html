@@ -1,0 +1,43 @@
+<!-- Header -->
+<ion-header [translucent]="true" *ngIf="loaded" collapse="undefined" mode="ios">
+  <ion-toolbar [style.background-color]="firebase.config.color">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title size="large" style="height: 60px; text-align: center;">
+      <img class="logo" alt="logo" [src]="firebase.config.logo">
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<!-- Content -->
+<ion-content [fullscreen]="true" *ngIf="loaded">
+  <div id="container">
+    <!-- Card de promocão -->
+    <div class="promoCard"  [style.background]="'url(' + firebase.config.banner + ')'"></div>
+
+    <!-- Categorias -->
+    <ion-list *ngFor="let c of categorias" style="margin-top: 20px;" mode="ios">
+      <ion-list-header style="margin-bottom: 15px; color: #fff" [style.background-color]="firebase.config.color">
+        {{c.titulo}}
+      </ion-list-header>
+
+      <!-- Produtos -->
+      <ion-item *ngFor="let p of c.produtos" lines='none' (click)="detalhesDoProduto(p)">
+        <ion-row style="width: 100%;">
+          <ion-col size="4">
+            <div class="produtoImagem" [style.background]="'url(' + p.imagem + ')'"></div>
+          </ion-col>
+          <ion-col size="8">
+            <ion-label style="overflow:visible !important; color: rgb(61, 61, 61); font-size: 15px;">{{p.titulo}}</ion-label>
+            <p style="color: rgb(85, 85, 85); font-size: 11px; margin-top: 0px; margin-bottom: 0px; width: 100%;">{{p.descricao}}</p>
+            <p  [style.color]="firebase.config.color" style="font-size: 10px; position: relative; top: -5px">R${{p.preco}}</p>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    
+    </ion-list>
+  </div>
+</ion-content>

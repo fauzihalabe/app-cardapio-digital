@@ -3,8 +3,17 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  firebase: {
+    apiKey: "AIzaSyBNVAHZTnl_bl4eTzHaczh9EwSocqJc8RY",
+    authDomain: "cardapio-digital-app.firebaseapp.com",
+    projectId: "cardapio-digital-app",
+    storageBucket: "cardapio-digital-app.appspot.com",
+    messagingSenderId: "783573552867",
+    appId: "1:783573552867:web:f4b590053280ebaac17fd6",
+    measurementId: "G-XQRKLY6YP8"
+  }
+ };
 
 /*
  * For easier debugging in development mode, you can import the following file

@@ -1,0 +1,107 @@
+#container {
+    padding: 30px;
+}
+
+.promoCard {
+    width: 100%;
+    height: 100px;
+    background: rgb(107, 105, 105);
+    border-radius: 5px;
+    background-size: cover !important;
+    background-position-x: center !important;
+    background-position-y: center !important;
+}
+
+.logo {
+    width: 60px;
+}
+
+ion-menu-button {
+    --color: white !important;
+    color: white !important;
+}
+
+ion-menu-buttons {
+    --color: white !important;
+    color: white !important;
+}
+
+.header-translucent-ios ion-toolbar {
+    --opacity: 0 !important;
+}
+
+ion-item {
+    --padding-start: 0px;
+    margin-bottom: 15px;
+}
+
+ion-list-header {
+    padding-inline-start: 0px;
+    padding: 0px 10px;
+    align-items: center;
+    font-size: 16px;
+    border-radius: 5px;
+}
+
+ion-col {
+    padding: 0px;
+}
+
+.produtoImagem {
+    width: 70px;
+    height: 70px;
+    background-size: cover !important;
+    background-position-x: center !important;
+    background-position-y: center !important;
+    border-radius: 100px;
+}
+
+.imagemProduto {
+    background-size: cover !important;
+    background-position-x: center !important;
+    background-position-y: center !important;
+    height: 100px;
+    width: 100px;
+    border-radius: 100px;
+}
+
+.containerProduto {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+.descProduto {
+    text-align: justify;
+  text-justify: inter-word;
+    font-size: 14px;
+    color: rgb(102, 102, 102)
+}   
+
+.footerDiv {
+    width: 100%;
+    height: 50px;
+}
+
+.iconDiv {
+    border-radius: 5px;
+    text-align: center;
+    width: 90%;
+    margin-left: 5%;
+}
+
+
+ion-content {
+    --background: #fff !important
+}
+
+ion-item {
+    --background: transparent !important
+  }
+
+  ion-list {
+    --background: transparent !important;
+    background: transparent !important;
+    --ion-background-color: transparent !important;
+  }
