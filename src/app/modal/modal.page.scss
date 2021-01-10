@@ -74,10 +74,10 @@ ion-col {
 
 .descProduto {
     text-align: justify;
-  text-justify: inter-word;
+    text-justify: inter-word;
     font-size: 14px;
-    color: rgb(102, 102, 102)
-}   
+    color: rgb(102, 102, 102);
+}
 
 .footerDiv {
     width: 100%;
@@ -91,17 +91,28 @@ ion-col {
     margin-left: 5%;
 }
 
-
 ion-content {
-    --background: #fff !important
+    --background: #fff !important;
 }
 
 ion-item {
-    --background: transparent !important
-  }
+    --background: transparent !important;
+}
 
-  ion-list {
+ion-list {
     --background: transparent !important;
     background: transparent !important;
     --ion-background-color: transparent !important;
-  }
+}
+
+ion-label {
+    color: #000 !important;
+}
+
+ion-text-area {
+    color: #000 !important;
+}
+
+textarea {
+    color: #000 !important;
+}
