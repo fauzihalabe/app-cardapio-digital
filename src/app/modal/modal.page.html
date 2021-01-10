@@ -3,15 +3,17 @@
   <ion-toolbar [style.background-color]="firebase.config.color">
     <ion-buttons slot="start" (click)="fechar()">
       <ion-button>
-        <ion-icon slot="icon-only" name="chevron-back-outline" style="color: #fff"></ion-icon>
+        <ion-icon slot="icon-only" name="chevron-back-outline"  [style.color]="firebase.config.color"></ion-icon>
       </ion-button>
     </ion-buttons>
 
-    <ion-title size="large" style="text-align: center; font-size: 18px; color:#fff">
+    <ion-title size="large" style="text-align: center; font-size: 18px;"  [style.color]="firebase.config.color">
       {{produto.titulo}}
     </ion-title>
   </ion-toolbar>
 </ion-header>
+
+
 
 <!-- Content -->
 <ion-content>
@@ -80,7 +82,7 @@
 </ion-content>
 
 <!-- Footer -->
-<ion-footer (click)="adicionarAoCarrinho()">
+<ion-footer (click)="adicionarAoCarrinho()"  mode="ios">
   <ion-toolbar>
 
     <div class="footerDiv" [style.background-color]="firebase.config.color">

@@ -52,6 +52,10 @@ export class ModalPage implements OnInit {
       }
     }
 
+    else {
+      this.finalizarAdicao()
+    }
+
 
   }
 
